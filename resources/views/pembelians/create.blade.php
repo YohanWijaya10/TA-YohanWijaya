@@ -6,10 +6,7 @@
         <h2>Add Purchase</h2>
         <form action="{{ route('pembelians.store') }}" method="POST">
             @csrf
-            <div class="form-group">
-                <label for="sku">SKU:</label>
-                <input type="text" class="form-control" id="sku" name="sku" value="{{ old('sku') }}" required>
-            </div>
+            
             
             <div class="form-group">
                 <label for="product">Product:</label>

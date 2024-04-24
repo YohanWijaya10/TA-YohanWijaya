@@ -14,7 +14,7 @@ class CreatePenjualansTable extends Migration
             $table->foreignId('product_id')->constrained();
             $table->date('tanggal');
             $table->integer('jumlah_barang');
-            $table->decimal('total_pembelian');
+            $table->integer('total_pembelian');
             $table->timestamps();
         });
     }

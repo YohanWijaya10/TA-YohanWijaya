@@ -52,69 +52,71 @@
                 </div>
             </div>
             <div class="col-md-6">
-                    <div class="card mb-4">
-                        <div class="card-header text-white fw-bold" style="background-color: purple; color: white;">
-                            Barang yang Perlu Restock
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th >Nama Produk</th>
-                                            <th>Total Barang</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($productsToRestock as $product)
-                                            @if ($product->nama_produk !== null)
-                                                <tr>
-                                                    <td>{{ $product->nama_produk }}</td>
-                                                    <td>{{ $product->jumlah_barang }}</td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <ul class="pagination justify-content-center">
-                                {{ $productsToRestock->links() }} <!-- Pagination links -->
-                            </ul>
-                            
-                        </div>
+                <div class="card mb-4">
+                    <div class="card-header text-white fw-bold" style="background-color: purple; color: white;">
+                        Barang yang Perlu Restock
                     </div>
-                    <div class="card mb-4">
-                        <div class="card-header text-white fw-bold" style="background-color: DarkCyan; color: white;">
-                            Barang yang Kadaluarsa
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Produk</th>
+                                        <th>Jumlah Barang</th>
+                                        <th>Batas Restock</th> <!-- Tambah kolom Batas Restock -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($productsToRestock as $product)
                                         <tr>
-                                            <th>Nama Produk</th>
-                                            <th>Tanggal Kadaluarsa</th>
+                                            <td>{{ $product->nama_produk }}</td>
+                                            <td>{{ $product->jumlah_barang }}</td>
+                                            <td>{{ $product->restock_threshold }}</td> <!-- Tampilkan batas restock -->
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($expiredProducts as $product)
-                                            @if ($product->nama_produk !== null)
-                                                <tr>
-                                                    <td>{{ $product->nama_produk }}</td>
-                                                    <td>{{ $product->kadaluarsa }}</td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <ul class="pagination justify-content-center">
-                                {{ $expiredProducts->links() }}
-                            </ul>
-                            
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
+                        @if ($productsToRestock instanceof \Illuminate\Pagination\LengthAwarePaginator)
+    {{ $productsToRestock->links() }}
+@endif
+
+                        
                     </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header text-white fw-bold" style="background-color: DarkCyan; color: white;">
+                        Barang yang Kadaluarsa
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Produk</th>
+                                        <th>Tanggal Kadaluarsa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($expiredProducts as $product)
+                                        @if ($product->nama_produk !== null)
+                                            <tr>
+                                                <td>{{ $product->nama_produk }}</td>
+                                                <td>{{ $product->kadaluarsa }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <ul class="pagination justify-content-center">
+                            {{ $expiredProducts->links() }}
+                        </ul>
+                        
+                    </div>
+                </div>
             </div>
+            
            
 
             

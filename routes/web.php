@@ -12,6 +12,8 @@ use App\Http\Controllers\DetailPembelianController;
 // Routing untuk Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 // Routing untuk Laporan
 Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan');
 
@@ -57,7 +59,5 @@ Route::get('/penjualans/{penjualan}/edit', [PenjualanController::class, 'edit'])
 Route::put('/penjualans/{penjualan}', [PenjualanController::class, 'update'])->name('penjualans.update');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 

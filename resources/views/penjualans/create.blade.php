@@ -12,7 +12,8 @@
                     <option value="">Select Product</option>
                     @foreach($products as $product)
                         @if($product->jumlah_barang != 0)
-                            <option value="{{ $product->id }}" data-price="{{ $product->harga_jual }}">{{ $product->nama_produk }}</option>
+                        <option value="{{ $product->id }}" data-price="{{ $product->harga_jual }}" data-stock="{{ $product->jumlah_barang }}">{{ $product->nama_produk }}</option>
+
                         @endif
                     @endforeach
                 </select>
@@ -21,7 +22,10 @@
             </div>
             <div class="form-group">
                 <label for="tanggal">Date:</label>
-                <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                @php
+                    $today = date("Y-m-d");
+                @endphp
+                <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $today }}" required>
             </div>
             <div class="form-group">
                 <label for="jumlah_barang">Quantity:</label>
@@ -64,16 +68,18 @@
     </script>
     <script>
         document.getElementById('jumlah_barang').addEventListener('change', function() {
-            var jumlah_barang = parseInt(this.value);
-            var stok_produk = parseInt('{{ $product->jumlah_barang }}'); // Ambil stok produk dari PHP
-    
-            if (jumlah_barang > stok_produk) {
-                document.getElementById('stockError').style.display = 'block';
-                alert('Product stock is insufficient. Please reduce the quantity.');
-            } else {
-                document.getElementById('stockError').style.display = 'none';
-            }
-        });
+    var jumlah_barang = parseInt(this.value);
+    var productOption = document.getElementById('product_id').options[document.getElementById('product_id').selectedIndex];
+    var stok_produk = parseInt(productOption.getAttribute('data-stock'));
+
+    if (jumlah_barang > stok_produk) {
+        document.getElementById('stockError').style.display = 'block';
+        alert('Product stock is insufficient. Please reduce the quantity.');
+    } else {
+        document.getElementById('stockError').style.display = 'none';
+    }
+});
+
     </script>
     
     

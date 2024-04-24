@@ -13,8 +13,8 @@ class CreateProductsTable extends Migration
             $table->string('sku')->unique();
             $table->string('nama_produk');
             $table->integer('jumlah_barang');
-            $table->decimal('harga_beli', 10, 2);
-            $table->decimal('harga_jual', 10, 2);
+            $table->integer('harga_beli');
+            $table->integer('harga_jual');
             $table->timestamps();
         });
     }

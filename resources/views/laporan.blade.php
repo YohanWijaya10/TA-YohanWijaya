@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h1>Laporan</h1>
+        <h1>Laporan Penjualan</h1>
     </div>
     <div class="row mt-2">
         <div class="col-md-4 mt-1">
@@ -27,7 +27,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header bg-primary text-white fw-bold">
-                    Total Pendapatan
+                    Total Ravenue
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Rp {{ number_format($totalPendapatan, 2) }}</h5>
@@ -37,7 +37,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header  bg-success text-white fw-bold">
-                    Total Pendapatan Bersih
+                    Total Laba
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Rp {{ number_format($pendapatanBersih, 2) }}</h5>
